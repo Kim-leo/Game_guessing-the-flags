@@ -56,6 +56,7 @@ class ViewController: UIViewController {
         
         let ac = UIAlertController(title: title, message: "Score: \(score)", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: button))
+        ac.addAction(UIAlertAction(title: "Stop", style: .cancel, handler: nil))
         present(ac, animated: true)
     }
     
