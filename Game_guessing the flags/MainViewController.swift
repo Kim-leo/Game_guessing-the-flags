@@ -12,7 +12,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = ""
         
+        let backBarButtonItem = UIBarButtonItem(title: "Go to Main", style: .plain, target: self, action: nil)
+        
+        self.navigationItem.backBarButtonItem = backBarButtonItem
         
     }
     
