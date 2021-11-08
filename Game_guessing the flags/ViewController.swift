@@ -30,19 +30,36 @@ class ViewController: UIViewController {
         imgBtn3.layer.borderWidth = 1
         imgBtn3.layer.borderColor = UIColor.black.cgColor
                
-        button()
+        button(action: nil)
     }
     
     func button(action: UIAlertAction! = nil) {
         countries.shuffle()
         Answer = Int.random(in: 0...2)
-        title = countries[Answer]
+        title = countries[Answer].uppercased()
         
         imgBtn1.setImage(UIImage(named: countries[0]), for: .normal)
         imgBtn2.setImage(UIImage(named: countries[1]), for: .normal)
         imgBtn3.setImage(UIImage(named: countries[2]), for: .normal)
     }
 
-
+    @IBAction func btnAction(_ sender: UIButton) {
+        var title: String
+        
+        if sender.tag == Answer {
+            title = "Correct"
+            score += 1
+        } else {
+            title = "Wrong"
+            score -= 1
+        }
+        
+        let ac = UIAlertController(title: title, message: "Score: \(score)", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: button))
+        present(ac, animated: true)
+    }
+    
+    
+    
 }
 
