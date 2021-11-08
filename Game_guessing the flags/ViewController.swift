@@ -14,22 +14,30 @@ class ViewController: UIViewController {
     @IBOutlet var imgBtn3: UIButton!
     
     var score = 0
-    var countries = ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
+    var Answer = 0
+
+    var countries = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
   
+        countries += ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
+        
         imgBtn1.layer.borderWidth = 1
         imgBtn1.layer.borderColor = UIColor.black.cgColor
         imgBtn2.layer.borderWidth = 1
         imgBtn2.layer.borderColor = UIColor.black.cgColor
         imgBtn3.layer.borderWidth = 1
         imgBtn3.layer.borderColor = UIColor.black.cgColor
-        
+               
         button()
     }
     
     func button(action: UIAlertAction! = nil) {
+        countries.shuffle()
+        Answer = Int.random(in: 0...2)
+        title = countries[Answer]
+        
         imgBtn1.setImage(UIImage(named: countries[0]), for: .normal)
         imgBtn2.setImage(UIImage(named: countries[1]), for: .normal)
         imgBtn3.setImage(UIImage(named: countries[2]), for: .normal)
