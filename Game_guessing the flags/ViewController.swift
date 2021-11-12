@@ -23,6 +23,7 @@ class ViewController: UIViewController {
   
         countries += ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
         
+        //Swift UI for each image buttons.
         imgBtn1.layer.borderWidth = 1
         imgBtn1.layer.borderColor = UIColor.black.cgColor
         imgBtn2.layer.borderWidth = 1
@@ -32,7 +33,10 @@ class ViewController: UIViewController {
                
         button(action: nil)
     }
-    
+    /**
+     1. Pick three random numbers, and use those to read the flags from the array.
+     2. Shuffle up the order of the array, then pick the first three items.
+     */
     func button(action: UIAlertAction! = nil) {
         countries.shuffle()
         Answer = Int.random(in: 0...2)
@@ -43,6 +47,10 @@ class ViewController: UIViewController {
         imgBtn3.setImage(UIImage(named: countries[2]), for: .normal)
     }
 
+    /**
+     If you answer the quiz, an alert will pop up saying "Correct",
+     and if you fail the quiz, the alert will pop up saying "Wrong".
+     */
     @IBAction func btnAction(_ sender: UIButton) {
         var title: String
         
