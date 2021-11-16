@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     
     var score = 0
     var Answer = 0
+    var questionAsked = 0
 
     var countries = [String]()
 
@@ -53,6 +54,8 @@ class ViewController: UIViewController {
         imgBtn1.setImage(UIImage(named: countries[0]), for: .normal)
         imgBtn2.setImage(UIImage(named: countries[1]), for: .normal)
         imgBtn3.setImage(UIImage(named: countries[2]), for: .normal)
+        
+        questionAsked += 1
     }
 
     /**
@@ -70,12 +73,20 @@ class ViewController: UIViewController {
             score -= 1
         }
         
-        let ac = UIAlertController(title: title, message: "Score: \(score)", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: button))
-        ac.addAction(UIAlertAction(title: "Stop", style: .cancel, handler: stopTask))
-        present(ac, animated: true)
+        if questionAsked == 10 {
+            let ac = UIAlertController(title: title, message: "You have answered 10 questions. Your final score is \(score)", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Start over", style: .default, handler: button))
+            ac.addAction(UIAlertAction(title: "Stop", style: .cancel, handler: stopTask))
+            present(ac, animated: true)
+            score = 0
+            questionAsked = 0
+        } else {
         
-        
+            let ac = UIAlertController(title: title, message: "Score: \(score)", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: button))
+            ac.addAction(UIAlertAction(title: "Stop", style: .cancel, handler: stopTask))
+            present(ac, animated: true)
+        }
     }
     
     func stopTask(action: UIAlertAction!) {
