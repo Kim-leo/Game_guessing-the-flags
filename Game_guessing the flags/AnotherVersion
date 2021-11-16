@@ -1,0 +1,80 @@
+//
+//  ViewController.swift
+//  project2_forPractice
+//
+//  Created by 김승현 on 2021/11/09.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    @IBOutlet var bnt1: UIButton!
+    @IBOutlet var btn2: UIButton!
+    @IBOutlet var btn3: UIButton!
+    @IBOutlet var yourScore: UILabel!
+    @IBOutlet var correctOrWrong: UILabel!
+    
+    var score = 0
+    var answer = 0
+    var countries = [String]()
+    
+ 
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        countries += ["estonia", "france", "germany", "italy", "ireland", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us" ]
+        
+        bnt1.layer.borderWidth = 1
+        btn2.layer.borderWidth = 1
+        btn3.layer.borderWidth = 1
+        bnt1.layer.borderColor = UIColor.black.cgColor
+        btn2.layer.borderColor = UIColor.black.cgColor
+        btn3.layer.borderColor = UIColor.black.cgColor
+        
+        button(action: nil)
+        
+        
+        
+    }
+    
+    func button(action: UIAlertAction! = nil) {
+        countries.shuffle()
+        answer = Int.random(in: 0...2)
+        title = countries[answer].uppercased()
+        
+        bnt1.setImage(UIImage(named: countries[0]), for: .normal)
+        btn2.setImage(UIImage(named: countries[1]), for: .normal)
+        btn3.setImage(UIImage(named: countries[2]), for: .normal)
+    }
+
+    @IBAction func btnAction(_ sender: UIButton) {
+        //var title: String
+        
+        if sender.tag == answer {
+            //title = "Correct"
+            score += 1
+            button()
+            correctOrWrong.text = "Correct!"
+            correctOrWrong.textColor = .green
+        } else {
+            //title = "Wrong"
+            score -= 1
+            button()
+            correctOrWrong.text = "Wrong!"
+            correctOrWrong.textColor = .red
+            
+        }
+        /*
+        let ac = UIAlertController(title: title, message: "Score: \(score)", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: button))
+        ac.addAction(UIAlertAction(title: "Stop", style: .cancel, handler: nil))
+        present(ac, animated: true)
+        */
+        yourScore.text = "Your score: \(score)"
+    }
+    
+}
+
